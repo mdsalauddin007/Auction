@@ -7,126 +7,116 @@
 
 <style>
 body{
-    margin:0;
-    font-family: Inter, Segoe UI, sans-serif;
-    background:#f2f4f7;
-    color:#1d2939;
+ margin:0;
+ font-family:Inter,Segoe UI,sans-serif;
+ background:#f2f4f7;
+ color:#1d2939;
 }
 
 /* TRUST STRIP */
 .trust-strip{
-    background:#0c1b2a;
-    color:#e4e7ec;
-    font-size:13px;
-    padding:6px 10px;
-    text-align:center;
-    font-weight:500;
+ background:#0c1b2a;
+ color:#e4e7ec;
+ font-size:13px;
+ padding:6px;
+ text-align:center;
 }
 
 /* HEADER */
 .header{
-    background:#ffffff;
-    padding:12px 16px 14px;
-    text-align:center;
-    box-shadow:0 4px 12px rgba(0,0,0,0.06);
+ background:#fff;
+ padding:12px 14px;
+ text-align:center;
+ box-shadow:0 4px 12px rgba(0,0,0,.06);
 }
 
 .live-badge{
-    background:#027a48;
-    color:#fff;
-    padding:4px 10px;
-    border-radius:14px;
-    font-size:12px;
-    font-weight:600;
+ background:#027a48;
+ color:#fff;
+ padding:4px 10px;
+ border-radius:12px;
+ font-size:12px;
+ font-weight:600;
 }
 
 .header h2{
-    margin:6px 0 4px;
-    font-size:20px;
-    font-weight:600;
+ margin:6px 0 4px;
+ font-size:19px;
+ font-weight:600;
 }
 
 /* TIMER */
 .timer-box{
-    margin-top:8px;
-    background:#f9fafb;
-    padding:10px;
-    border-radius:10px;
-    display:inline-block;
-    border:1px solid #e4e7ec;
+ margin-top:6px;
+ background:#f9fafb;
+ padding:8px 10px;
+ border-radius:10px;
+ display:inline-block;
+ border:1px solid #e4e7ec;
 }
 
 .timer{
-    font-size:22px;
-    font-weight:700;
-    color:#b42318;
+ font-size:21px;
+ font-weight:700;
+ color:#b42318;
 }
 
 .flash-timer{
-    margin-top:4px;
-    font-size:13px;
-    color:#344054;
+ font-size:13px;
+ color:#344054;
+ margin-top:2px;
 }
 
 /* URGENCY */
 .urgency{
-    text-align:center;
-    margin:10px 0;
-    font-size:14px;
-    color:#b42318;
-    font-weight:500;
+ text-align:center;
+ margin:8px 0;
+ font-size:14px;
+ color:#b42318;
+ font-weight:500;
 }
 
 /* CTA */
 .cta-box{
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    margin-bottom:10px;
+ display:flex;
+ justify-content:center;
+ gap:10px;
+ margin-bottom:10px;
 }
 
 .cta-btn{
-    padding:12px 18px;
-    border-radius:10px;
-    border:none;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
-    background:#027a48;
-    color:#fff;
-    transition:.2s ease;
+ padding:10px 16px;
+ border-radius:8px;
+ border:none;
+ font-size:14px;
+ font-weight:600;
+ cursor:pointer;
+ background:#027a48;
+ color:#fff;
 }
 
-.cta-btn:hover{
-    background:#05603a;
-}
+.cta-btn:hover{background:#05603a}
 
 /* IFRAME */
 iframe{
-    width:100%;
-    height:1100px;
-    border:none;
-    background:#fff;
+ width:100%;
+ height:1100px;
+ border:none;
+ background:#fff;
 }
 
 /* SOCIAL POPUP */
 .popup{
-    position:fixed;
-    bottom:20px;
-    left:20px;
-    background:#ffffff;
-    color:#1d2939;
-    padding:10px 14px;
-    border-radius:10px;
-    font-size:13px;
-    box-shadow:0 8px 20px rgba(0,0,0,.12);
-    display:none;
-    border-left:4px solid #027a48;
-}
-
-@media(max-width:768px){
-    .header h2{font-size:18px}
-    .timer{font-size:20px}
+ position:fixed;
+ bottom:20px;
+ left:20px;
+ background:#fff;
+ padding:10px 14px;
+ border-radius:10px;
+ font-size:13px;
+ box-shadow:0 8px 20px rgba(0,0,0,.12);
+ display:none;
+ border-left:4px solid #027a48;
 }
 </style>
 </head>
@@ -138,27 +128,31 @@ Verified Deals • Limited Stock • Fast Delivery • Best Price
 </div>
 
 <div class="header">
-    <span class="live-badge">LIVE AUCTION</span>
-    <h2>Limited-Time Best Deals</h2>
+ <span class="live-badge">LIVE AUCTION</span>
+ <h2>Limited-Time Best Deals</h2>
 
-    <div class="timer-box">
-        <div class="timer" id="mainTimer">01:00:00</div>
-        <div class="flash-timer">Flash deal ends in <b id="flashTimer">15:00</b></div>
-    </div>
+ <div class="timer-box">
+  <div class="timer" id="mainTimer">01:00:00</div>
+  <div class="flash-timer">
+   Flash deal ends in <b id="flashTimer">15:00</b>
+  </div>
+ </div>
 </div>
 
 <div class="urgency" id="urgencyText"></div>
 
 <div class="cta-box">
-    <button class="cta-btn" onclick="scrollToDeals()">View Live Deals</button>
-    <button class="cta-btn" onclick="scrollToDeals()">Grab Offer</button>
+ <button class="cta-btn" onclick="scrollToDeals()">View Live Deals</button>
+ <button class="cta-btn" onclick="scrollToDeals()">Grab Offer</button>
 </div>
 
-<iframe id="deals" src="https://inrdeals.com/embed/deals?user=mds678374924"></iframe>
+<iframe id="deals"
+src="https://inrdeals.com/embed/deals?user=mds678374924"></iframe>
 
 <div class="popup" id="popup"></div>
 
-<audio id="beep" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+<audio id="beep"
+src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
 
 <script>
 // MAIN TIMER
@@ -181,29 +175,43 @@ setInterval(()=>{
  if(flash>0) flash--; else flash=900;
 },1000);
 
-// URGENCY ROTATE
+// URGENCY TEXT
 const msgs=[
 "7 users purchased in last 10 minutes",
 "Offer ending shortly",
 "Limited stock available",
-"Prices may increase soon"
+"High demand right now"
 ];
-let i=0;
+let u=0;
 setInterval(()=>{
- urgencyText.innerText=msgs[i%msgs.length];
- i++;
+ urgencyText.innerText=msgs[u%msgs.length];
+ u++;
 },3500);
 
+// 100 BUYER NAMES (INDIAN + FOREIGN)
+const buyers=[
+"Rahul","Aman","Sneha","Pooja","Imran","Arjun","Rohit","Neha","Ankit","Priya",
+"Vikram","Karan","Ayesha","Sahil","Riya","Manish","Nikhil","Simran","Aditya","Kavya",
+"Sunil","Meera","Deepak","Isha","Varun","Alok","Tanvi","Harsh","Naina","Mohit",
+"Raj","Suman","Ashish","Payal","Faizan","Shivam","Anjali","Kabir","Preeti","Yash",
+
+"John","Michael","David","Chris","Daniel","Alex","Emma","Sophia","Olivia","Liam",
+"Noah","James","Lucas","Ethan","Mia","Emily","Ella","Ava","Grace","Henry",
+"Oliver","Benjamin","Jack","Leo","William","Jacob","Ryan","Nathan","Aaron","Sam",
+"Tony","Kevin","Brian","Jason","Mark","Paul","Peter","Robert","Adam","Luke"
+];
+
 // SOCIAL PROOF
-const names=["Rahul","Aman","Sneha","Imran","Pooja"];
 setInterval(()=>{
- popup.innerText=`${names[Math.floor(Math.random()*names.length)]} just purchased a deal`;
+ const name=buyers[Math.floor(Math.random()*buyers.length)];
+ popup.innerText=`${name} just purchased a deal`;
  popup.style.display="block";
  setTimeout(()=>popup.style.display="none",4000);
 },12000);
 
 function scrollToDeals(){
- document.getElementById("deals").scrollIntoView({behavior:"smooth"});
+ document.getElementById("deals")
+ .scrollIntoView({behavior:"smooth"});
 }
 </script>
 
