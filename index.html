@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Auction Deals</title>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background:#0f1115;
+    color:#fff;
+}
+
+/* TRUST STRIP */
+.trust-strip{
+    background:#000;
+    color:#0f0;
+    font-size:14px;
+    padding:8px;
+    text-align:center;
+    font-weight:600;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#ff512f,#dd2476);
+    padding:20px;
+    text-align:center;
+}
+
+.live-badge{
+    background:#000;
+    color:#0f0;
+    padding:6px 14px;
+    border-radius:20px;
+    font-weight:bold;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:.4}
+}
+
+.timer-box{
+    margin-top:15px;
+    background:rgba(0,0,0,.35);
+    padding:15px;
+    border-radius:12px;
+}
+
+.timer{
+    font-size:26px;
+    font-weight:bold;
+}
+
+.flash-timer{
+    margin-top:6px;
+    color:#ff0;
+    font-size:16px;
+}
+
+/* CTA */
+.cta-box{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    margin:20px;
+}
+
+.cta-btn{
+    padding:14px 20px;
+    border-radius:30px;
+    border:none;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    background:#00e676;
+    color:#000;
+    animation:pulse 1.2s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.05)}
+}
+
+/* URGENCY TEXT */
+.urgency{
+    text-align:center;
+    margin-bottom:10px;
+    font-size:15px;
+    color:#ffeb3b;
+}
+
+/* IFRAME */
+iframe{
+    width:100%;
+    height:1100px;
+    border:none;
+    background:#fff;
+}
+
+/* SOCIAL POPUP */
+.popup{
+    position:fixed;
+    bottom:90px;
+    left:10px;
+    background:#111;
+    padding:12px 16px;
+    border-radius:10px;
+    font-size:14px;
+    box-shadow:0 0 15px rgba(0,255,0,.4);
+    display:none;
+}
+
+/* STICKY BAR */
+.sticky-bar{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:#000;
+    display:flex;
+}
+
+.sticky-bar button{
+    flex:1;
+    padding:15px;
+    font-size:16px;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.live-btn{background:#ff1744;color:#fff;}
+.hurry-btn{background:#00e676;color:#000;}
+
+@media(max-width:768px){
+    .timer{font-size:22px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="trust-strip">
+✅ Verified Deals | ⏳ Limited Time | 🚚 Fast Delivery | 💰 Best Price
+</div>
+
+<div class="header">
+    <span class="live-badge">🔥 LIVE AUCTION</span>
+    <h2>Best Deals – Limited Time</h2>
+
+    <div class="timer-box">
+        <div>Auction Ends In</div>
+        <div class="timer" id="mainTimer">01:00:00</div>
+        <div class="flash-timer">Flash Deal Ends In: <span id="flashTimer">15:00</span></div>
+    </div>
+</div>
+
+<div class="urgency" id="urgencyText"></div>
+
+<div class="cta-box">
+    <button class="cta-btn" onclick="scrollToDeals()">🔥 View Live Deals</button>
+    <button class="cta-btn" onclick="scrollToDeals()">⚡ Grab Offer Now</button>
+</div>
+
+<iframe id="deals" src="https://inrdeals.com/embed/deals?user=mds678374924"></iframe>
+
+<div class="popup" id="popup"></div>
+
+<div class="sticky-bar">
+    <button class="live-btn" onclick="scrollToDeals()">LIVE 🔥</button>
+    <button class="hurry-btn" onclick="scrollToDeals()">HURRY ⏰</button>
+</div>
+
+<audio id="beep" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+
+<script>
+// MAIN TIMER
+let main = 3600;
+setInterval(()=>{
+    let h=Math.floor(main/3600),
+        m=Math.floor(main%3600/60),
+        s=main%60;
+    mainTimer.innerHTML=`${h.toString().padStart(2,"0")}:${m.toString().padStart(2,"0")}:${s.toString().padStart(2,"0")}`;
+    if(main===600 || main===60) beep.play();
+    if(main>0) main--;
+},1000);
+
+// FLASH TIMER
+let flash=900;
+setInterval(()=>{
+    let m=Math.floor(flash/60),s=flash%60;
+    flashTimer.innerHTML=`${m}:${s.toString().padStart(2,"0")}`;
+    if(flash>0) flash--; else flash=900;
+},1000);
+
+// URGENCY ROTATION
+const urgencyMsgs=[
+"🔥 7 people bought in last 10 minutes",
+"⏰ Offer expiring soon",
+"📦 Only few items left",
+"💸 Prices increasing shortly"
+];
+let u=0;
+setInterval(()=>{
+    urgencyText.innerText=urgencyMsgs[u%urgencyMsgs.length];
+    u++;
+},3000);
+
+// SOCIAL POPUP
+const names=["Rahul","Aman","Sneha","Imran","Pooja"];
+setInterval(()=>{
+    popup.innerText=`💰 ${names[Math.floor(Math.random()*names.length)]} just grabbed a deal`;
+    popup.style.display="block";
+    setTimeout(()=>popup.style.display="none",4000);
+},10000);
+
+function scrollToDeals(){
+    document.getElementById("deals").scrollIntoView({behavior:"smooth"});
+}
+</script>
+
+</body>
+</html>
